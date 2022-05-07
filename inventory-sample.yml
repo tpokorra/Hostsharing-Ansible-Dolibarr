@@ -7,3 +7,12 @@ dolibarr:
       domain: dolibarr.example.org
       user: dolibarr
       password: testpassw0rd_changeme
+
+      admin_language: de
+      admin_username: dolibarr_admin
+      initial_admin_password: testpassw0rd_changeme2
+
+      instance_unique_id: 32characterrandomstringdigitlett
+
+      # see https://github.com/Dolibarr/dolibarr/branches
+      dolibarr_branch: "15.0"
