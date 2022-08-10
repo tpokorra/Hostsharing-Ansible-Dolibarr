@@ -14,5 +14,5 @@ dolibarr:
 
       instance_unique_id: 32characterrandomstringdigitlett
 
-      # see https://github.com/Dolibarr/dolibarr/branches
-      dolibarr_branch: "15.0"
+      # see https://github.com/Dolibarr/dolibarr/releases
+      dolibarr_version: "15.0.3"

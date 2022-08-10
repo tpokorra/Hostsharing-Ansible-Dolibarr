@@ -19,6 +19,12 @@
     file:
       path: "/home/pacs/{{pac}}/users/{{user}}/bin"
       state: directory
+  - name: create directory dolibarr
+    become: yes
+    become_user: "{{pac}}-{{user}}"
+    file:
+      path: "/home/pacs/{{pac}}/users/{{user}}/dolibarr"
+      state: directory
 
   #################################
   ## install data directory
@@ -57,20 +63,15 @@
   ##################################
   ## install dolibarr
   ##################################
-  - name: Check for git working tree
+  - name: install dolibarr
     become: yes
     become_user: "{{pac}}-{{user}}"
-    stat:
-      path: /home/pacs/{{pac}}/users/{{user}}/dolibarr
-    register: workingtree
-  - name: get dolibarr repo
-    become: yes
-    become_user: "{{pac}}-{{user}}"
-    git:
-      repo: https://github.com/dolibarr/dolibarr.git
-      version: "{{dolibarr_branch}}"
+    unarchive:
+      src: https://github.com/Dolibarr/dolibarr/archive/refs/tags/{{dolibarr_version}}.tar.gz
+      remote_src: yes
       dest: /home/pacs/{{pac}}/users/{{user}}/dolibarr
-    when: not workingtree.stat.exists
+      extra_opts: [--strip-components=1]
+      creates: /home/pacs/{{pac}}/users/{{user}}/dolibarr/htdocs/index.php
 
   ##################################
   ## configuration
